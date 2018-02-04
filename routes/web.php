@@ -12,5 +12,5 @@
 */
 
 Route::get('/{name?}/{lastname?}', function ($name = '', $lastname = '') {
-    return "welcome " . $name . ' ' . $lastname . " test winngit";
+    return "welcome " . $name . ' ' . $lastname . " test da osx";
 });
