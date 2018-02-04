@@ -12,5 +12,5 @@
 */
 
 Route::get('/{name?}/{lastname?}', function ($name = '', $lastname = '') {
-    return "welcome " . $name . ' ' . $lastname . " test da osx";
+    return "welcome " . $name . ' ' . $lastname;
 });
