@@ -11,13 +11,16 @@
 | 
 */
 
-Route::get('/{name?}/{lastname?}', function ($name = '', $lastname = '') {
-    return "welcome " . $name . ' ' . $lastname;
-})
+Route::get('/','HomeController@index');
+
+Route::get('/{name?}/{lastname?}', 'WelcomeController@welcome')
+
+/*
 ->where([
-	'name' => '[a-zA-Z'
+	'name' => '[a-zA-Z]+',
+	'lastname' => '[a-zA-Z]+',
+	'age' => '[0-9]{1,3}',
 
 ])
-
-
+*/
 ;
