@@ -13,4 +13,11 @@
 
 Route::get('/{name?}/{lastname?}', function ($name = '', $lastname = '') {
     return "welcome " . $name . ' ' . $lastname;
-});
+})
+->where([
+	'name' => '[a-zA-Z'
+
+])
+
+
+;
