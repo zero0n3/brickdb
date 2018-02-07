@@ -37,9 +37,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
+        $this->mapPageRoutes(); //da mettere prima di web se no legge le rotte di web
+
         $this->mapWebRoutes();
 
         $this->mapAdminRoutes();
+
+
         //
     }
 
@@ -77,5 +81,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('admin')
              ->namespace($this->namespace)
              ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapPageRoutes()
+    {
+        Route::prefix('pages')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/pages.php'));
     }
 }

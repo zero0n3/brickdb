@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 class WelcomeController extends Controller
 {
     //
-    public function welcome($name = '', $lastname = '')
+    public function welcome($name = '', $lastname = '', Request $req)
     {
-    	return "<h1>welcome " . $name . ' ' . $lastname . '</h1>';
+    	$language = $req->input('lang');
+    	$res = "<h1>welcome " . $name . ' ' . $lastname . ' ' . $language . '</h1>';
+    	return $res;
     }
 }

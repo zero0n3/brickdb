@@ -13,7 +13,7 @@
 
 Route::get('/','HomeController@index');
 
-Route::get('/{name?}/{lastname?}', 'WelcomeController@welcome')
+Route::get('welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
 
 /*
 ->where([
