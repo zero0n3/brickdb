@@ -64,4 +64,12 @@ class PageController extends Controller
     	return view('staffb', compact('title', 'staff'));
     	
     }
+
+    public function blog() {
+
+        $staff = $this->data;
+        $title = 'our staff compact';
+        return view('blog', compact('title', 'staff'));
+        
+    }
 }
