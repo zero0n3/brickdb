@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
         // 
 		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        Parts::truncate();
-        Categories::truncate();
+        SeedCategoriesTable::truncate();
+        
+
+        $this->call(SeedCategoriesTable::class);
     }
 }

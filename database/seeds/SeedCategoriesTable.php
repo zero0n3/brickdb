@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SeedCategorieTable extends Seeder
+class SeedCategoriesTable extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class SeedCategorieTable extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->delete();
+		DB::table('categories')->delete();
         DB::table('categories')->insert(array (
             0 => 
             array (
