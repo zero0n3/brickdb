@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Part;
+use Illuminate\Database\Eloquent\Faker;
+
 
 
 /*

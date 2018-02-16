@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+
 
 class SeedUserTable extends Seeder
 {
@@ -12,6 +14,14 @@ class SeedUserTable extends Seeder
      */
     public function run()
     {
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        User::truncate();
+        
+        factory(App\User::class, 30)->create();
+
+/*
         //
         $sql = 'INSERT INTO users (name, email, password, created_at) values (:name,:email, :password, :created_at)';
 
@@ -24,6 +34,6 @@ class SeedUserTable extends Seeder
 
             ]);
         }
-        
+        */
     }
 }
