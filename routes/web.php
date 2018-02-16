@@ -11,6 +11,8 @@
 | 
 */
 
+use App\Models\Part;
+
 Route::get('/','HomeController@index');
 
 Route::get('welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
@@ -24,3 +26,9 @@ Route::get('welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
 ])
 */
 ;
+
+Route::get('/parts',function(){
+	return Part::all();
+
+
+});

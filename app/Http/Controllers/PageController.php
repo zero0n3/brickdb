@@ -18,8 +18,8 @@ class PageController extends Controller
 			'lastname' => 'placci' 
 		],
 		[
-			'name' => 'chiara',
-			'lastname' => 'fari' 
+			'name' => 'andrea',
+			'lastname' => 'rossi' 
 		],
 
 
