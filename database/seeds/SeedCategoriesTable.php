@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use League\Csv\Reader;
 
 class SeedCategoriesTable extends Seeder
 {
@@ -12,6 +13,29 @@ class SeedCategoriesTable extends Seeder
     public function run()
     {
 
+$this->filename = base_path().'/database/csvs/lcategories.csv';
+
+//We are going to insert some data into the users table
+$sth = $dbh->prepare(
+    "INSERT INTO users (firstname, lastname, email) VALUES (:firstname, :lastname, :email)"
+);
+
+$csv = Reader::createFromPath('/path/to/your/csv/file.csv')
+    ->setHeaderOffset(0)
+;
+
+//by setting the header offset we index all records
+//with the header record and remove it from the iteration
+
+foreach ($csv as $record) {
+    //Do not forget to validate your data before inserting it in your database
+    $sth->bindValue(':firstname', $record['First Name'], PDO::PARAM_STR);
+    $sth->bindValue(':lastname', $record['Last Name'], PDO::PARAM_STR);
+    $sth->bindValue(':email', $record['E-mail'], PDO::PARAM_STR);
+    $sth->execute();
+}
+
+/*
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
 
@@ -258,5 +282,6 @@ class SeedCategoriesTable extends Seeder
                 'updated_at' => NULL,
             ),
         ));
+*/
     }
 }
