@@ -37,9 +37,9 @@ $factory->define(App\Models\Moc_list::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Models\Inventory_x_user::class, function (Faker $faker) {
+/*$factory->define(App\Models\Inventory_x_user::class, function (Faker $faker) {
     return [
         'list_name' => $faker->word(),
         'user_id' => $faker->numberBetween(1,3)
     ];
-});
+});*/

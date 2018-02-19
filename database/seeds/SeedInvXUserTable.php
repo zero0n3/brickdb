@@ -14,6 +14,9 @@ class SeedInvXUserTable extends Seeder
     {
         Inventory_x_user::truncate();
         
-        factory(App\Models\Inventory_x_user::class, 6)->create();
+
+
+        
+        //factory(App\Models\Inventory_x_user::class, 6)->create();
     }
 }
