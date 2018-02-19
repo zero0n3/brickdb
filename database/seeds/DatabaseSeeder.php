@@ -29,5 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedPartTable::class);
         $this->call(SeedInvListTable::class);
         $this->call(SeedMocListTable::class);
+        $this->call(SeedInvListTable::class);
+        $this->call(SeedMocListTable::class);
+        $this->call(SeedInvXUserTable::class);
+        $this->call(SeedMocXUserTable::class);
     }
 }

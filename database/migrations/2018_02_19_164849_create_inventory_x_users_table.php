@@ -15,10 +15,13 @@ class CreateInventoryXUsersTable extends Migration
     {
         Schema::create('inventory_x_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('part_num',20);
-            $table->string('name',128);
-            $table->integer('part_cat_id')->unsigned();
-            $table->foreign('part_cat_id')->on('categories')->references('id');
+            $table->string('part_id',20);
+            $table->foreign('part_id')->on('parts')->references('part_num');
+            $table->integer('color_id')->unsigned();
+            $table->foreign('color_id')->on('colors')->references('id');
+            $table->integer('quantity')->unsigned();
+            $table->integer('inventory_list_id')->unsigned();
+            $table->foreign('inventory_list_id')->on('inventory_lists')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

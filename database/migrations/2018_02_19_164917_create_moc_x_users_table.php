@@ -15,6 +15,14 @@ class CreateMocXUsersTable extends Migration
     {
         Schema::create('moc_x_users', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('part_id',20);
+            $table->foreign('part_id')->on('parts')->references('part_num');
+            $table->integer('color_id')->unsigned();
+            $table->foreign('color_id')->on('colors')->references('id');
+            $table->integer('quantity')->unsigned();
+            $table->integer('moc_list_id')->unsigned();
+            $table->foreign('moc_list_id')->on('moc_lists')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
