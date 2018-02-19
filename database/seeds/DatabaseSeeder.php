@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Part;
 use App\Models\Category;
+use App\Models\Color;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -18,11 +20,12 @@ class DatabaseSeeder extends Seeder
 		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
         //User::truncate();
-        
 
 
         //
         $this->call(SeedUserTable::class);
         $this->call(SeedCategoryTable::class);
+        $this->call(SeedColorTable::class);
+        $this->call(SeedPartTable::class);
     }
 }

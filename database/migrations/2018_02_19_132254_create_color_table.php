@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePartsTable extends Migration
+class CreateColorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('parts', function (Blueprint $table) {
-            //$table->increments('part_num');
-            $table->string('part_num',20)->unique()->primary();
+        Schema::create('colors', function (Blueprint $table) {
+            $table->integer('id')->unique()->unsigned()->primary();
             $table->string('name',128);
-            $table->integer('part_cat_id')->unsigned();
-            $table->foreign('part_cat_id')->on('categories')->references('id');
+            $table->string('rgb',6);
+            $table->string('is_trans',1);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ class CreatePartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parts');
+        Schema::dropIfExists('colors');
     }
 }

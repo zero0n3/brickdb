@@ -1,12 +1,11 @@
 <?php
 
-use App\Models\Category;
+use App\Models\Part;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use League\Csv\Reader;
 
-
-class SeedCategoryTable extends Seeder
+class SeedPartTable extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,28 +14,26 @@ class SeedCategoryTable extends Seeder
      */
     public function run()
     {
+        Part::truncate();
 
 
-        Category::truncate();
-
-
-        $csv = Reader::createFromPath(base_path().'/database/csv/part_categories.csv')
+        $csv = Reader::createFromPath(base_path().'/database/csv/parts.csv')
             ->setHeaderOffset(0);
 
-        $sql = 'INSERT INTO categories (id, name, created_at) values (:id,:name, :created_at)';
+        $sql = 'INSERT INTO parts (part_num, name, part_cat_id, created_at) values (:part_num, :name, :part_cat_id, :created_at)';
 
         //by setting the header offset we index all records
         //with the header record and remove it from the iteration
 
         foreach ($csv as $record) {
             DB::statement($sql, [
-                'id' => $record['id'],
+                'part_num' => $record['part_num'],
                 'name' => $record['name'],
+                'part_cat_id' => $record['part_cat_id'],
                 'created_at' => Carbon::now(),
 
             ]);
 
         }
-        
     }
 }

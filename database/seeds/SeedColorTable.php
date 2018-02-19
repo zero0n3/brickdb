@@ -1,12 +1,11 @@
 <?php
 
-use App\Models\Category;
+use App\Models\Color;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use League\Csv\Reader;
 
-
-class SeedCategoryTable extends Seeder
+class SeedColorTable extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +14,15 @@ class SeedCategoryTable extends Seeder
      */
     public function run()
     {
+        //
+
+        Color::truncate();
 
 
-        Category::truncate();
-
-
-        $csv = Reader::createFromPath(base_path().'/database/csv/part_categories.csv')
+        $csv = Reader::createFromPath(base_path().'/database/csv/colors.csv')
             ->setHeaderOffset(0);
 
-        $sql = 'INSERT INTO categories (id, name, created_at) values (:id,:name, :created_at)';
+        $sql = 'INSERT INTO colors (id, name, rgb, is_trans, created_at) values (:id, :name, :rgb, :is_trans, :created_at)';
 
         //by setting the header offset we index all records
         //with the header record and remove it from the iteration
@@ -32,11 +31,12 @@ class SeedCategoryTable extends Seeder
             DB::statement($sql, [
                 'id' => $record['id'],
                 'name' => $record['name'],
+                'rgb' => $record['rgb'],
+                'is_trans' => $record['is_trans'],
                 'created_at' => Carbon::now(),
 
             ]);
 
         }
-        
     }
 }
