@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\Models\Category;
 use App\User;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,13 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         // 
-		//DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
+		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
         //User::truncate();
         
 
         //$this->call(SeedCategoriesTable::class);
         //
         $this->call(SeedUserTable::class);
+        $this->call(SeedCategoryTable::class);
     }
 }

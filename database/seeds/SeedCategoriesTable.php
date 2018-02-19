@@ -13,7 +13,10 @@ class SeedCategoriesTable extends Seeder
     public function run()
     {
 
-$this->filename = base_path().'/database/csvs/lcategories.csv';
+        $this->filename = base_path().'/database/csv/part_categories.csv';
+
+
+//$this->filename = base_path().'/database/csvs/lcategories.csv';
 
 //We are going to insert some data into the users table
 $sth = $dbh->prepare(
