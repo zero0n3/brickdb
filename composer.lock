@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c92e0ba26c20f375ae7105584b7ad6c5",
+    "content-hash": "07f6a37e8923a193ff5772613aac2002",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1267,16 +1267,16 @@
         },
         {
             "name": "league/csv",
-            "version": "9.1.2",
+            "version": "9.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/csv.git",
-                "reference": "90bedd96fa3e3d2a988be985b9b1ee29cdb38301"
+                "reference": "60ea563773f1c50162a948c44901c93b9a0aee56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/csv/zipball/90bedd96fa3e3d2a988be985b9b1ee29cdb38301",
-                "reference": "90bedd96fa3e3d2a988be985b9b1ee29cdb38301",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/60ea563773f1c50162a948c44901c93b9a0aee56",
+                "reference": "60ea563773f1c50162a948c44901c93b9a0aee56",
                 "shasum": ""
             },
             "require": {
@@ -1327,7 +1327,7 @@
                 "read",
                 "write"
             ],
-            "time": "2018-02-05T14:07:11+00:00"
+            "time": "2017-08-18T10:27:55+00:00"
         },
         {
             "name": "league/flysystem",
