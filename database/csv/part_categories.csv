@@ -1,6 +1,6 @@
 id,name
 1,Baseplates
-4,'Duplo, Quatro and Primo'
+4,"Duplo, Quatro and Primo"
 6,Bricks Wedged
 11,Bricks
 14,Plates
@@ -9,14 +9,14 @@ id,name
 27,Minifig Accessories
 28,Plants and Animals
 29,Wheels and Tyres
-38,'Flags, Signs, Plastics and Cloth'
+38,"Flags, Signs, Plastics and Cloth"
 39,Magnets and Holders
 40,Technic Panels
-41,'Bionicle, Hero Factory and Constraction'
-42,'Belville, Scala and Fabuland'
+41,"Bionicle, Hero Factory and Constraction"
+42,"Belville, Scala and Fabuland"
 43,Znap
 44,Mechanical
-45,'Power Functions, Mindstorms and Electric'
+45,"Power Functions, Mindstorms and Electric"
 46,Technic Axles
 47,Windscreens and Fuselage
 48,Clikits
@@ -28,4 +28,4 @@ id,name
 54,Technic Bushes
 55,Technic Beams Special
 56,Tools
-57,'Non-Buildable Figures (Duplo, Fabuland, etc)'
+57,"Non-Buildable Figures (Duplo, Fabuland, etc)"

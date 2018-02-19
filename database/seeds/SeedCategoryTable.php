@@ -3,6 +3,7 @@
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use League\Csv\Reader;
 
 
 class SeedCategoryTable extends Seeder
@@ -18,68 +19,27 @@ class SeedCategoryTable extends Seeder
 
         Category::truncate();
         
-        /*
-        $sql = 'INSERT INTO categories (id, name, created_at) values (:id, :name, :created_at)';
 
-        for($i=0; $i<5; $i++) {
+
+        //$this->filename = base_path().'/database/csv/part_categories.csv';
+
+        $csv = Reader::createFromPath(base_path().'/database/csv/part_categories.csv')
+            ->setHeaderOffset(0);
+
+        $sql = 'INSERT INTO categories (id, name, created_at) values (:id,:name, :created_at)';
+
+        //by setting the header offset we index all records
+        //with the header record and remove it from the iteration
+
+        foreach ($csv as $record) {
             DB::statement($sql, [
-                'id' => $i,
-                'name' => 'Baseplates '.$i,
+                'id' => $record['id'],
+                'name' => $record['name'],
                 'created_at' => Carbon::now(),
 
             ]);
+
         }
-        */
-       
-            /*   DB::table('categories')->insert(array (
-            0 => 
-            array (
-                'id' => 1,
-                'name' => 'Baseplates',
-                'deleted_at' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            1 => 
-            array (
-                'id' => 4,
-                'name' => 'Duplo, Quatro and Primo',
-                'deleted_at' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            2 => 
-            array (
-                'id' => 6,
-                'name' => 'Bricks Wedged',
-                'deleted_at' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            3 => 
-            array (
-                'id' => 11,
-                'name' => 'Bricks',
-                'deleted_at' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            4 => 
-            array (
-                'id' => 14,
-                'name' => 'Plates',
-                'deleted_at' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            5 => 
-            array (
-                'id' => 16,
-                'name' => 'Windows and Doors',
-                'deleted_at' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            )
-        ));*/
+        
     }
 }
