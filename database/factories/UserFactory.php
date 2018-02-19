@@ -21,3 +21,18 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(App\Models\Inventory_list::class, function (Faker $faker) {
+    return [
+        'list_name' => $faker->word(),
+        'user_id' => $faker->numberBetween(1,3)
+    ];
+});
+
+$factory->define(App\Models\Moc_list::class, function (Faker $faker) {
+    return [
+        'moc_name' => $faker->word(),
+        'user_id' => $faker->numberBetween(1,3)
+    ];
+});

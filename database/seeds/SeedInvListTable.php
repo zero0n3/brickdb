@@ -2,7 +2,6 @@
 
 
 use App\Models\Inventory_list;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class SeedInvListTable extends Seeder
@@ -16,6 +15,6 @@ class SeedInvListTable extends Seeder
     {
         Inventory_list::truncate();
         
-        //factory(App\Models\Inventory_list::class, 3)->create();
+        factory(App\Models\Inventory_list::class, 6)->create();
     }
 }

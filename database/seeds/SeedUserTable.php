@@ -17,7 +17,7 @@ class SeedUserTable extends Seeder
         
         User::truncate();
         
-        factory(App\User::class, 30)->create();
+        factory(App\User::class, 10)->create();
 
 /*
         //
