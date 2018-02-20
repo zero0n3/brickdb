@@ -15,8 +15,8 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('part_id')->unsigned();
-            $table->foreign('part_id')->on('inventory_x_users')->references('id');
+            $table->string('part_id',20);
+            $table->foreign('part_id')->on('parts')->references('part_num');
             $table->string('first_loc',20);
             $table->string('other_loc',20);
             $table->integer('user_id')->unsigned();

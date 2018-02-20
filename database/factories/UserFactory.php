@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Inventory_x_user;
+use App\User;
 use Faker\Generator as Faker;
 
 /*
@@ -36,10 +38,3 @@ $factory->define(App\Models\Moc_list::class, function (Faker $faker) {
         'user_id' => $faker->numberBetween(1,3)
     ];
 });
-
-/*$factory->define(App\Models\Inventory_x_user::class, function (Faker $faker) {
-    return [
-        'list_name' => $faker->word(),
-        'user_id' => $faker->numberBetween(1,3)
-    ];
-});*/
