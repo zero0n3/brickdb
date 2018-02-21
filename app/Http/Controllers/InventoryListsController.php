@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventory_list;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 
 class InventoryListsController extends Controller
@@ -17,9 +19,9 @@ class InventoryListsController extends Controller
 
 	public function delete( $id ){
         
-        $sql = 'DELETE from inventory_lists WHERE id= :id';
-        dd($sql);
-        return DB::delete($sql, ['id' => $id]);
+        $sql = 'DELETE from inventory_lists WHERE id = :id';
+        
+        DB::delete($sql, ['id' => $id]);
        
         return redirect()->back();
 	}

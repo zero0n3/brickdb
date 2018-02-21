@@ -18,8 +18,8 @@ Route::get('/','HomeController@index');
 
 //inventory lists
 Route::get('/inventory', 'InventoryListsController@index');
-Route::delete('/inventory/{inventory_id}/delete','InventoryListsController@delete')
-		->where('inventory_id', '[0-9]+');
+Route::get('/inventory/{inventory_list_id}/delete','InventoryListsController@delete')
+		->where(['inventory_list_id' => '[0-9]+']);
 
 
 Route::get('welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
