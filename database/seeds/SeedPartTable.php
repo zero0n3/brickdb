@@ -14,7 +14,7 @@ class SeedPartTable extends Seeder
      */
     public function run()
     {
-        Part::truncate();
+        //Part::truncate();
 
 
         $csv = Reader::createFromPath(base_path().'/database/csv/parts.csv')

@@ -15,7 +15,7 @@ class SeedLocationTable extends Seeder
      */
     public function run()
     {
-        Location::truncate();
+        //Location::truncate();
         
         $csv = Reader::createFromPath(base_path().'/database/csv/location.csv')
             ->setHeaderOffset(0);

@@ -17,7 +17,7 @@ class SeedCategoryTable extends Seeder
     {
 
 
-        Category::truncate();
+        //Category::truncate();
 
 
         $csv = Reader::createFromPath(base_path().'/database/csv/part_categories.csv')

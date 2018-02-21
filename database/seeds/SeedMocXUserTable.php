@@ -15,7 +15,7 @@ class SeedMocXUserTable extends Seeder
      */
     public function run()
     {
-        Moc_x_user::truncate();
+        //Moc_x_user::truncate();
         
         $csv = Reader::createFromPath(base_path().'/database/csv/moc_x_user.csv')
             ->setHeaderOffset(0);

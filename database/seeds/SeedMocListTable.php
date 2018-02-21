@@ -12,7 +12,7 @@ class SeedMocListTable extends Seeder
      */
     public function run()
     {
-        Moc_list::truncate();
+        //Moc_list::truncate();
         
         factory(App\Models\Moc_list::class, 6)->create();
     }

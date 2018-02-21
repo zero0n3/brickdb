@@ -13,7 +13,7 @@ class SeedInvListTable extends Seeder
      */
     public function run()
     {
-        Inventory_list::truncate();
+        //Inventory_list::truncate();
         
         factory(App\Models\Inventory_list::class, 6)->create();
     }

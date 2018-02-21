@@ -16,7 +16,7 @@ class SeedColorTable extends Seeder
     {
         //
 
-        Color::truncate();
+        //Color::truncate();
 
 
         $csv = Reader::createFromPath(base_path().'/database/csv/colors.csv')

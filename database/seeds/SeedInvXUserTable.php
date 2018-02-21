@@ -15,7 +15,7 @@ class SeedInvXUserTable extends Seeder
      */
     public function run()
     {
-        Inventory_x_user::truncate();
+        //Inventory_x_user::truncate();
         
         $csv = Reader::createFromPath(base_path().'/database/csv/inventory_x_user.csv')
             ->setHeaderOffset(0);

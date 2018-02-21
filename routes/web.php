@@ -11,9 +11,12 @@
 | 
 */
 
+use App\Http\Controllers\InventoryListsController;
 use App\Models\Part;
 
 Route::get('/','HomeController@index');
+
+Route::get('/invlists', 'InventoryListsController@index');
 
 Route::get('welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
 
