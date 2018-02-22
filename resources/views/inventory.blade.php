@@ -13,8 +13,8 @@
       @foreach ($inventory_lists as $inventory_list)
 
           <li class="collection-item">({{$inventory_list->id}}) {{$inventory_list->list_name}}
-            <div class="right">
-              <a href="/inventory/{{$inventory_list->id}}" class="btn red">DELETE</a>
+            <div class="right-align">      
+              <a href="/inventory/{{$inventory_list->id}}" class="btn waves-effect waves-light">DELETE</a>
             </div>
           </li>
 
@@ -29,45 +29,34 @@
 
 @section('footer')
   @parent
-  <script>
-
-
-   $('document').ready(function(){
+    <script>
+    $('document').ready(function(){
       $('div.alert').fadeOut(1500);
-      $('ul').on('click', 'a.btn', function(ele) {
-      //$('#delete').click(function(ele) {
-        ele.preventDefault()
-        /* Act on the event */
-        //console.log(ele);
+      $('ul').on('click', 'a[class="btn waves-effect waves-light"]', function(ele) {
+        ele.preventDefault();
+
         var urlInventory = $(this).attr('href');
 
-        //console.log(myvar);
-        //var li = ele.target.parentNode;
         var li = ele.target.parentNode.parentNode;
-//console.log(li);
-        $.ajax(
-          urlInventory,
-          {
-            method: 'DELETE',
-            data: {
-              '_token': $('#_token').val()
-            },
-            complete : function(resp){
-
+        
+        $.ajax(urlInventory, 
+        {
+          method: 'DELETE',
+          data: {
+            '_token': $('#_token').val()
+          },
+          complete : function(resp){
               if (resp.responseText == 1){
-                
-                li.parentNode.removeChild(li);
-              
+                $(li).remove();
               } else {
-                
                 alert('Problem contacting server');
-              
               }
-            }
-          })
+          }
+        })
 
       });
     });
 
-  </script>
+
+    </script>
 @endsection

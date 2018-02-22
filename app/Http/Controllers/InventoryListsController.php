@@ -14,14 +14,16 @@ class InventoryListsController extends Controller
 	public function index(){
 		//return Inventory_list::All();
 		$inventory_lists = Inventory_list::All();
-		return view('inventoryB', ['inventory_lists' => $inventory_lists]);
+		return view('inventory', ['inventory_lists' => $inventory_lists]);
 	}
 
 	public function delete( $id ){
         
         $sql = 'DELETE from inventory_lists WHERE id = :id';
         
-        DB::delete($sql, ['id' => $id]);
+        //qui devo dare il return del db delete così da catturarlo in ajax 
+        //e testarlo per eliminare la riga
+        return DB::delete($sql, ['id' => $id]);
        
         //return redirect()->back();
 	}
