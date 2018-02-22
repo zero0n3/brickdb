@@ -14,7 +14,7 @@ class InventoryListsController extends Controller
 	public function index(){
 		//return Inventory_list::All();
 		$inventory_lists = Inventory_list::All();
-		return view('inventory', ['inventory_lists' => $inventory_lists]);
+		return view('inventoryB', ['inventory_lists' => $inventory_lists]);
 	}
 
 	public function delete( $id ){
@@ -23,7 +23,7 @@ class InventoryListsController extends Controller
         
         DB::delete($sql, ['id' => $id]);
        
-        return redirect()->back();
+        //return redirect()->back();
 	}
 
 	
