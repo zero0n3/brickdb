@@ -5,20 +5,22 @@
   @section('content')
 
     <h2>Inventory Lists</h2>
-    
+    <form>
+    <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
+
+
     <ul class="collection">
       @foreach ($inventory_lists as $inventory_list)
 
           <li class="collection-item">({{$inventory_list->id}}) {{$inventory_list->list_name}}
-            
-            <div class="right-align">
-              <a href="/inventory/{{$inventory_list->id}}/delete" class="btn danger">DELETE</a>
+            <div class="right">
+              <a href="/inventory/{{$inventory_list->id}}" class="btn red" id="delete">DELETE</a>
             </div>
           </li>
 
       @endforeach
     </ul>
-
+    </form>
   @endsection
 
 
@@ -32,8 +34,8 @@
 
    $('document').ready(function(){
       $('div.alert').fadeOut(1500);
-      $('ul').on('click', 'a.btn danger', function(ele) {
-      //$('#delete').click(function(ele) {
+      //$('ul').on('click', 'a.btn', function(ele) {
+      $('#delete').click(function(ele) {
         ele.preventDefault();
         /* Act on the event */
         //console.log(ele);

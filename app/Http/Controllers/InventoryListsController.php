@@ -25,4 +25,12 @@ class InventoryListsController extends Controller
        
         return redirect()->back();
 	}
+
+	
+	public function show($id){
+		
+		return Inventory_list::All()->where('id','=', $id);
+
+		//return view('inventory', ['inventory_lists' => $inventory_lists]);
+	}
 }
