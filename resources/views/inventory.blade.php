@@ -14,7 +14,7 @@
 
           <li class="collection-item">({{$inventory_list->id}}) {{$inventory_list->list_name}}
             <div class="right-align">      
-              <a href="/inventory/{{$inventory_list->id}}" class="btn waves-effect waves-light">DELETE</a>
+              <a href="/inventory/{{$inventory_list->id}}" class="btn waves-effect waves-light red">DELETE</a>
             </div>
           </li>
 
