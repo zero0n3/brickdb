@@ -35,4 +35,21 @@ class InventoryListsController extends Controller
 
 		//return view('inventory', ['inventory_lists' => $inventory_lists]);
 	}
+
+
+	public function edit($id){
+		
+        //dd($id);
+        //$sql = 'SELECT id, album_name, description from albums WHERE ID = :id';
+        //$album = DB::select($sql, ['id'=>$id]);
+        $inventory_list = Inventory_list::find($id);
+        return view('inventory.edit')->with('inventory_list', $inventory_list);
+	}
+
+	public function store($id, Request $req){
+		
+		$data = request()->only(['inventory_name','']);
+		dd($data);
+
+	}
 }

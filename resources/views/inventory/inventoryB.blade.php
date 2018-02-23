@@ -14,6 +14,7 @@
 
             <li class="list-group-item d-flex justify-content-between">({{$inventory_list->id}}) {{$inventory_list->list_name}}
               <div>
+                <a href="/inventory/{{$inventory_list->id}}/edit" class="btn btn-primary">EDIT</a>
                 <a href="/inventory/{{$inventory_list->id}}" class="btn btn-danger">DELETE</a>
               </div>
             </li>

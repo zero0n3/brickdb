@@ -9,13 +9,17 @@
     <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
 
 
+
     <ul class="collection">
       @foreach ($inventory_lists as $inventory_list)
 
           <li class="collection-item">({{$inventory_list->id}}) {{$inventory_list->list_name}}
-            <div class="right-align">      
+
+            <div class="right-align"> 
+              <a href="/inventory/{{$inventory_list->id}}/edit" class="btn waves-effect waves-light blue">EDIT</a>     
               <a href="/inventory/{{$inventory_list->id}}" class="btn waves-effect waves-light red">DELETE</a>
             </div>
+
           </li>
 
       @endforeach
@@ -32,7 +36,7 @@
     <script>
     $('document').ready(function(){
       $('div.alert').fadeOut(1500);
-      $('ul').on('click', 'a[class="btn waves-effect waves-light"]', function(ele) {
+      $('ul').on('click', 'a[class="btn waves-effect waves-light red"]', function(ele) {
         ele.preventDefault();
 
         var urlInventory = $(this).attr('href');
