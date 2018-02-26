@@ -5,6 +5,13 @@
   @section('content')
 
     <h2>Inventory Lists</h2>
+
+@if(session()->has('message'))
+  @component('components.alert-info')
+    {{session()->get('message')}}
+  @endcomponent
+@endif
+
     <form>
     <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
 
@@ -35,7 +42,7 @@
   @parent
     <script>
     $('document').ready(function(){
-      $('div.alert').fadeOut(1500);
+      $('#alert_box').fadeOut(3500);
       $('ul').on('click', 'a[class="btn waves-effect waves-light red"]', function(ele) {
         ele.preventDefault();
 

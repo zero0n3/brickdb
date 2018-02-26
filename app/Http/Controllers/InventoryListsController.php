@@ -48,21 +48,37 @@ class InventoryListsController extends Controller
 
 	public function store($id, Request $req){
 		
-/*
+
 		$data = request()->only('list_name');
 		$data['id'] = $id;
 		$sql = "UPDATE inventory_lists SET list_name = :list_name WHERE id = :id";
 		$res = DB::update($sql, $data);
-*/
+
+/*
 
 		$inventory_list = Inventory_list::find($id);
 		$inventory_list->list_name = request()->input('inventory_name');
 		
 
 		$res = $inventory_list->save();
+*/
+		
+		$messaggio = $res ? 'Album con id ' .$id. ' aggiornato' : 'Album ' .$id. ' non aggiornato';
 
+		session()->flash('message', $messaggio);
+		return redirect()->route('inventory');
+
+	}
+
+	public function create(){
 		
+		return view('inventory.createinventory');
+
+	}
+
+	public function save(Request $req){
 		
+		dd(request()->all());
 
 	}
 }

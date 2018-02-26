@@ -17,13 +17,13 @@ use App\Models\Part;
 Route::get('/','HomeController@index');
 
 //inventory lists
-Route::get('/inventory', 'InventoryListsController@index');
+Route::get('/inventory', 'InventoryListsController@index')->name('inventory');
 Route::get('/inventory/{inventory_list_id}/edit', 'InventoryListsController@edit');
 Route::delete('/inventory/{inventory_list_id}','InventoryListsController@delete');
 Route::get('/inventory/{inventory_list_id}', 'InventoryListsController@show');
 Route::patch('/inventory/{inventory_list_id}', 'InventoryListsController@store');
-
-
+Route::get('/inventory/create', 'InventoryListsController@create')->name('create.inventory');
+Route::post('/inventory', 'InventoryListsController@save')->name('inventory.save');
 
 Route::get('welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
 

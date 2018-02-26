@@ -19,6 +19,10 @@
           <li><a href="/inventory">Inventory Lists</a></li>
         </ul>
 
+        <ul class="right hide-on-med-and-down">
+          <li><a href="{{route('create.inventory')}}">NEW Inventory</a></li>
+        </ul>
+
         <ul id="nav-mobile" class="side-nav">
           <li><a href="#">Navbar Link</a></li>
         </ul>
