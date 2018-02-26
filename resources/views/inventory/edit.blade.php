@@ -13,7 +13,7 @@
       <div class="row">
           <div class="row">
             <div class="input-field col s6">
-              <input id="inventory_name" type="text" class="validate" value="{{$inventory_list->list_name}}">
+              <input name="list_name" type="text" class="validate" value="{{$inventory_list->list_name}}">
               <label for="name">Name</label>
             </div>
           </div>
