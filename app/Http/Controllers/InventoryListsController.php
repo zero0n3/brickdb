@@ -13,6 +13,8 @@ class InventoryListsController extends Controller
     //
 	public function index(Request $req){
 		//$queryBuilder = DB::table('inventory_lists')->orderBy('id', 'desc');
+		//
+		// usando la classe il primo metodo DEVE ESSERE STATICO quindi usando i 2punti ::
 		$queryBuilder = Inventory_list::orderBy('id', 'desc');
 		if ($req->has('id')){
 
@@ -27,13 +29,18 @@ class InventoryListsController extends Controller
 
 	public function delete( $id ){
         
-        $resu = Inventory_list::where('id', $id)->delete();
+        //metodo 1
+        //$resu = Inventory_list::where('id', $id)->delete();
         
+        //METODO 2 CON FIND
+        $inventory = Inventory_list::find($id);
+        $resu = $inventory->delete();
+
         //$sql = 'DELETE from inventory_lists WHERE id = :id';
         //qui devo dare il return del db delete così da catturarlo in ajax 
         //e testarlo per eliminare la riga
         //return DB::delete($sql, ['id' => $id]);
-       	return $resu;
+       	return '' . $resu;
         //return redirect()->back();
 	}
 
@@ -57,11 +64,19 @@ class InventoryListsController extends Controller
 
 	public function store($id, Request $req){
 
+		/* METODO 1
 		$resu = Inventory_list::where('id', $id)->update(
 			[
 				'list_name' => request()->input('list_name'),
 			]
-		);
+		);*/
+
+		// METODO 2 CON FIND
+		$inventory = Inventory_list::find($id);
+		$inventory->list_name = request()->input('list_name');
+		$resu = $inventory->save();
+
+
 
 /*
 		$data = request()->only('list_name');
@@ -93,12 +108,31 @@ class InventoryListsController extends Controller
 
 	public function save(Request $req){
 		
+		/*
 		$resu = Inventory_list::insert(
 			[
 				'list_name' => request()->input('list_name'),
 				'user_id' => 2,
 			]
 		);
+		*/
+
+		/*
+		//metodo alternativo per creare un record - create
+		//con il create dobbiamo dirgli quali campi sono scrivibili per proteggere gli altri
+		//quindi metodo PIù SICURO dell'insert
+		$resu = Inventory_list::create(
+			[
+				'list_name' => request()->input('list_name'),
+				'user_id' => 2,
+			]
+		);*/
+
+		//METODO 3 CON L'ISTANZA
+		$inventory = new Inventory_list();
+		$inventory->list_name = request()->input('list_name');
+		$inventory->user_id = 2;
+		$resu = $inventory->save();
 
 /*
 		$data = request()->only('list_name');
