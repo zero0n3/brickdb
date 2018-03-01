@@ -16,6 +16,7 @@ class CreateInventoryListXUserTable extends Migration
         Schema::create('inventory_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('list_name',128);
+            $table->string('inv_thumb',128);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

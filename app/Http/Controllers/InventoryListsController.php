@@ -74,6 +74,9 @@ class InventoryListsController extends Controller
 		// METODO 2 CON FIND
 		$inventory = Inventory_list::find($id);
 		$inventory->list_name = request()->input('list_name');
+		if($req->hasFile('inv_thumb')){
+
+		}
 		$resu = $inventory->save();
 
 

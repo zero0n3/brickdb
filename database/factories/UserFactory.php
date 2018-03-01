@@ -28,6 +28,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 $factory->define(App\Models\Inventory_list::class, function (Faker $faker) {
     return [
         'list_name' => $faker->word(),
+        'inv_thumb' => $faker->imageUrl(120, 120, 'nature'),
         'user_id' => $faker->numberBetween(1,3)
     ];
 });
