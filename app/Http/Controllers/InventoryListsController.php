@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inventory_list;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\ImageManagerStatic as Image;
+use Image;
 
 class InventoryListsController extends Controller
 {
@@ -46,12 +46,16 @@ class InventoryListsController extends Controller
 	
 	public function show($id){
 		
-		//test salvataggio immagine in locale
-		$img = Image::make('http://jpg2pdf.com/images/jpg2pdf/icon.png');
+		// usage inside a laravel route
+		$img = Image::make('http://via.placeholder.com/150x50');
+		
+		$img->save('storage/images/parts/bar.png');
+		
+		//nome file
+		return $img->basename;
 
 		$resu = Inventory_list::where('id','=', $id)->orderBy('id','desc')->get();
 		//return $resu;
-		return '<img src="'.$img.'">';
 		//return view('inventory', ['inventory_lists' => $inventory_lists]);
 	}
 
