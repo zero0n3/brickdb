@@ -24,7 +24,7 @@
 
             <div class="right-align"> 
               @if($inventory_list->inv_thumb)
-                <img  class="circle responsive-img" width="50" src="{{$inventory_list->inv_thumb}}" alt="{{$inventory_list->list_name}}">
+                <img  class="circle responsive-img" width="50" src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}">
               @endif
               <a href="/inventory/{{$inventory_list->id}}/edit" class="btn waves-effect waves-light blue">EDIT</a>     
               <a href="/inventory/{{$inventory_list->id}}" class="btn waves-effect waves-light red">DELETE</a>

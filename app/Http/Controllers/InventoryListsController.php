@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inventory_list;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class InventoryListsController extends Controller
 {
@@ -45,8 +46,12 @@ class InventoryListsController extends Controller
 	
 	public function show($id){
 		
+		//test salvataggio immagine in locale
+		$img = Image::make('http://jpg2pdf.com/images/jpg2pdf/icon.png');
+
 		$resu = Inventory_list::where('id','=', $id)->orderBy('id','desc')->get();
-		return $resu;
+		//return $resu;
+		return '<img src="'.$img.'">';
 		//return view('inventory', ['inventory_lists' => $inventory_lists]);
 	}
 
@@ -73,7 +78,19 @@ class InventoryListsController extends Controller
 		$inventory = Inventory_list::find($id);
 		$inventory->list_name = request()->input('list_name');
 		if($req->hasFile('inv_thumb')){
-
+			$file = $req->file('inv_thumb');
+			if($file->isValid()){
+				//qui gli indico io il file system per questo file oppure cambio il default da local a public e non c'è + bisogno di dichiararll
+				//$fileName = $file->store(env('IMG_THUMB_DIR'), 'public');
+				//
+				//$fileName = $file->store(env('IMG_THUMB_DIR'));
+				//
+				//oppure uso storeas e creo anche il nome file 
+				$fileName = $id.'.'.$file->extension();
+				$file->storeAs(env('INVE_THUMB_DIR'), $fileName);
+				$inventory->inv_thumb = env('INVE_THUMB_DIR').$fileName;	
+			}
+			
 		}
 		$resu = $inventory->save();
 

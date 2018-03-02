@@ -36,7 +36,7 @@
         <div class="row">
             <div class="row">
               <div class="input-field col s6">
-                <img src="{{$inventory_list->inv_thumb}}" alt="{{$inventory_list->list_name}}">
+                <img src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}">
               </div>
             </div>
         </div>
