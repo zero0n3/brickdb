@@ -6,7 +6,7 @@ use App\Models\Inventory_list;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
+//	test git aws
 
 class InventoryListsController extends Controller
 {
