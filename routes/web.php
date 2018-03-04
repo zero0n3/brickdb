@@ -12,10 +12,15 @@
 */
 
 use App\Http\Controllers\InventoryListsController;
+use App\Http\Controllers\PartListController;
 use App\Models\Part;
 use Illuminate\Support\Facades\DB;
 
+//home
 Route::get('/','HomeController@index');
+
+//part list per recupero foto
+Route::get('/partlist','PartListController@home');
 
 //inventory lists
 Route::get('/inventory', 'InventoryListsController@index')->name('inventory');

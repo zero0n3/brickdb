@@ -11,6 +11,14 @@ class Part extends Model
 	protected $keyType = 'string';
 	public $incrementing = false;
 
+    //convenzione getNomeattribute
+    public function getPathAttribute(){
+    	$url = $this->part_img_url;
+    	if(stristr($this->part_img_url, 'http') === false){
+    		$url = 'storage/'.$this->part_img_url;
+		}
+		return $url;
+    }
 
 
 }
