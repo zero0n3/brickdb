@@ -48,5 +48,32 @@ class PartListController extends Controller
 		return view('part.part', ['parts' => $parts]);
 
 	}
+	
+	public function edit($part_num){
+		
+        //dd($id);
+        //$sql = 'SELECT id, album_name, description from albums WHERE ID = :id';
+        //$album = DB::select($sql, ['id'=>$id]);
+        $part = Part::find($part_num);
+        return view('part.edit')->with('part', $part);
+	}
+	
+	public function delete( $part_num ){
+        
+        //metodo 1
+        //$resu = Inventory_list::where('id', $id)->delete();
+        
+        //METODO 2 CON FIND
+        $part = Part::find($part_num);
+        $resu = $part->delete();
+
+        //$sql = 'DELETE from inventory_lists WHERE id = :id';
+        //qui devo dare il return del db delete così da catturarlo in ajax 
+        //e testarlo per eliminare la riga
+        //return DB::delete($sql, ['id' => $id]);
+      	return '' . $resu;
+        //return redirect()->back();
+
+	}
 
 }

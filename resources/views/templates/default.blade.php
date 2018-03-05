@@ -16,6 +16,10 @@
     <nav class="light-blue lighten-1" role="navigation">
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
         <ul class="right hide-on-med-and-down">
+          <li><a href="/partlist">Part List (ADMIN)</a></li>
+        </ul>
+        
+        <ul class="right hide-on-med-and-down">
           <li><a href="/inventory">Inventory Lists</a></li>
         </ul>
 

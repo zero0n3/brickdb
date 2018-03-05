@@ -26,9 +26,8 @@
               @if($part->part_img_url)
                 <img  class="responsive-img" width="50" src="{{asset($part->path)}}" alt="{{$part->name}}">
               @endif
-            <!-- <a href="/part/{{$part->part_num}}/edit" class="btn waves-effect waves-light blue">EDIT</a>     
-              <a href="/part/{{$part->part_num}}" class="btn waves-effect waves-light red">DELETE</a>
-            -->
+            <a href="/partlist/{{$part->part_num}}/edit" class="btn waves-effect waves-light blue">EDIT</a>
+            <!--  <a href="/partlist/{{$part->part_num}}" class="btn waves-effect waves-light red">DELETE</a> -->
             </div>
 
           </li>
@@ -44,6 +43,7 @@
 
 @section('footer')
   @parent
+<!--
     <script>
     $('document').ready(function(){
       $('#alert_box').fadeOut(3500);
@@ -73,5 +73,5 @@
     });
 
 
-    </script>
+    </script>-->
 @endsection

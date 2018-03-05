@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory_list;
-//use GuzzleHttp\Client;
-//use GuzzleHttp\Exception\ClientException;
-//use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-//use Image;
+
 
 class InventoryListsController extends Controller
 {
@@ -49,21 +46,6 @@ class InventoryListsController extends Controller
 	
 	public function show($id){
 		
-		/* // test per il recupero via API rebrickable delle immagini
-		$client = new Client();
-		$res = $client->request('GET', 'https://rebrickable.com/api/v3/lego/parts/3023/', [
-				'query' => ['key' => 'BzyyfQneul']
-			]);
-		$part_img_url = $res->getBody();
-        
-        // usage inside a laravel route
-		$img = Image::make(json_decode($part_img_url)->part_img_url);
-		
-		$img->save('storage/images/parts/'.basename(json_decode($part_img_url)->part_img_url));
-		
-		//nome file
-		return $img->basename;
-		*/
 		$resu = Inventory_list::where('id','=', $id)->orderBy('id','desc')->get();
 		return $resu;
 		//return view('inventory', ['inventory_lists' => $inventory_lists]);

@@ -19,8 +19,14 @@ use Illuminate\Support\Facades\DB;
 //home
 Route::get('/','HomeController@index');
 
-//part list per recupero foto
+//part list per recupero foto ed edit parti
 Route::get('/partlist','PartListController@home');
+//	la funzione delete in realtà non la imple,ento per le parti perchè non si cancellano le parti
+//	inoltre andrebbe contro la constrain dell'inventory perchè dovrei fare la cancellazione a cascata della parte
+//	su tutti gli altri record dell'inventory list quindi la lascio qui ma non la userò mai
+Route::delete('/partlist/{part_num}','PartListController@delete');
+Route::get('/partlist/{part_num}/edit', 'PartListController@edit');
+
 
 //inventory lists
 Route::get('/inventory', 'InventoryListsController@index')->name('inventory');
