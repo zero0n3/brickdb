@@ -20,12 +20,13 @@ use Illuminate\Support\Facades\DB;
 Route::get('/','HomeController@index');
 
 //part list per recupero foto ed edit parti
-Route::get('/partlist','PartListController@home');
-//	la funzione delete in realtà non la imple,ento per le parti perchè non si cancellano le parti
-//	inoltre andrebbe contro la constrain dell'inventory perchè dovrei fare la cancellazione a cascata della parte
-//	su tutti gli altri record dell'inventory list quindi la lascio qui ma non la userò mai
-Route::delete('/partlist/{part_num}','PartListController@delete');
+Route::get('/partlist','PartListController@home')->name('partlist');
 Route::get('/partlist/{part_num}/edit', 'PartListController@edit');
+Route::patch('/partlist/{part_num}', 'PartListController@store');
+//	la funzione delete in realtà non la implemento per le parti perchè non si cancellano le parti
+//	inoltre farebbe a cascata sull'invetory di ogni utente la modifica dei record in NULL per quella parte
+//	quindi la lascio qui ma non la userò mai
+Route::delete('/partlist/{part_num}','PartListController@delete');
 
 
 //inventory lists
@@ -47,7 +48,7 @@ Route::get('usernoinventory', function(){
 	
 });
 
-Route::get('welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
+Route::get('/welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
 
 /*
 ->where([

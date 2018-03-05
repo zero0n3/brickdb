@@ -15,8 +15,8 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('part_id',20);
-            $table->foreign('part_id')->on('parts')->references('part_num');
+            $table->string('part_id',20)->nullable();
+            $table->foreign('part_id')->on('parts')->references('part_num')->onDelete('set null')->onUpdate('cascade');
             $table->string('first_loc',20);
             $table->string('other_loc',20);
             $table->integer('user_id')->unsigned();

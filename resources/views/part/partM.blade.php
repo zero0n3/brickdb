@@ -4,7 +4,7 @@
 
   @section('content')
 
-    <h3 class="title is-3">Parts</h3>
+    <h2>Parts</h2>
 
 @if(session()->has('message'))
   @component('components.alert-info')
@@ -16,7 +16,7 @@
     <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
 
 
-    <table class="table is-striped is-hoverable is-narrow">
+    <table class="bordered highlight responsive-table">
       <thead>
         <tr>
             <th>Part Num</th>
@@ -33,13 +33,13 @@
           <td>{{$part->name}}</td>
           <td>{{$part->part_cat_id}}</td>
           @if($part->part_img_url)
-            <td><img  class="image is-48x48" src="{{asset($part->path)}}" alt="{{$part->name}}"></td>
+            <td><img  class="responsive-img" width="50" src="{{asset($part->path)}}" alt="{{$part->name}}"></td>
           @else
             <td></td>
           @endif
 
           <td>
-            <a href="/partlist/{{$part->part_num}}/edit" class="button is-info">EDIT</a>
+            <a href="/partlist/{{$part->part_num}}/edit" class="btn waves-effect waves-light blue">EDIT</a>
             <!--<a href="/partlist/{{$part->part_num}}" class="btn waves-effect waves-light red">DELETE</a>-->
           </td>
         </tr>

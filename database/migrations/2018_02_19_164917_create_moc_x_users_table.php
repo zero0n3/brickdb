@@ -15,8 +15,8 @@ class CreateMocXUsersTable extends Migration
     {
         Schema::create('moc_x_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('part_id',20);
-            $table->foreign('part_id')->on('parts')->references('part_num');
+            $table->string('part_id',20)->nullable();
+            $table->foreign('part_id')->on('parts')->references('part_num')->onDelete('set null')->onUpdate('cascade');
             $table->integer('color_id')->unsigned();
             $table->foreign('color_id')->on('colors')->references('id');
             $table->integer('quantity')->unsigned();

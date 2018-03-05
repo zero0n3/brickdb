@@ -1,10 +1,10 @@
 @extends('templates.default')
 
-@section('title', 'Parts')
+@section('title', 'Inventory Lists')
 
   @section('content')
 
-    <h3 class="title is-3">Parts</h3>
+    <h2>Inventory Lists</h2>
 
 @if(session()->has('message'))
   @component('components.alert-info')
@@ -16,39 +16,24 @@
     <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
 
 
-    <table class="table is-striped is-hoverable is-narrow">
-      <thead>
-        <tr>
-            <th>Part Num</th>
-            <th>Name</th>
-            <th>Cat.</th>
-            <th>Image</th>
-            <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach ($parts as $part)
-        <tr>
-          <td>{{$part->part_num}}</td>
-          <td>{{$part->name}}</td>
-          <td>{{$part->part_cat_id}}</td>
-          @if($part->part_img_url)
-            <td><img  class="image is-48x48" src="{{asset($part->path)}}" alt="{{$part->name}}"></td>
-          @else
-            <td></td>
-          @endif
 
-          <td>
-            <a href="/partlist/{{$part->part_num}}/edit" class="button is-info">EDIT</a>
-            <!--<a href="/partlist/{{$part->part_num}}" class="btn waves-effect waves-light red">DELETE</a>-->
-          </td>
-        </tr>
+    <ul class="collection">
+      @foreach ($inventory_lists as $inventory_list)
+
+          <li class="collection-item">({{$inventory_list->id}}) {{$inventory_list->list_name}}
+
+            <div class="right-align"> 
+              @if($inventory_list->inv_thumb)
+                <img  class="circle responsive-img" width="50" src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}">
+              @endif
+              <a href="/inventory/{{$inventory_list->id}}/edit" class="btn waves-effect waves-light blue">EDIT</a>     
+              <a href="/inventory/{{$inventory_list->id}}" class="btn waves-effect waves-light red">DELETE</a>
+            </div>
+
+          </li>
 
       @endforeach
-      </tbody>
-    </table>
-
-
+    </ul>
     </form>
   @endsection
 
@@ -58,7 +43,6 @@
 
 @section('footer')
   @parent
-
     <script>
     $('document').ready(function(){
       $('#alert_box').fadeOut(3500);

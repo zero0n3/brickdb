@@ -58,6 +58,30 @@ class PartListController extends Controller
         return view('part.edit')->with('part', $part);
 	}
 	
+	public function store($part_num, Request $req){
+		// METODO 2 CON FIND
+		$part = Part::find($part_num);
+		$part->name = request()->input('name');
+		$part->part_cat_id = request()->input('part_cat_id');
+		
+		if($req->hasFile('part_img')){
+			$file = $req->file('part_img');
+			if($file->isValid()){
+				//uso storeas e creo anche il nome file 
+				$fileName = request()->input('_filename');
+				$file->storeAs(env('PART_IMG'), $fileName);
+				//	aggiorno il percorso sul db
+				$part->part_img_url = env('PART_IMG').$fileName;	
+			}
+		}
+		
+		$resu = $part->save();
+
+		$messaggio = $resu ? 'Part con codice ' .$part_num. ' aggiornata' : 'Part con codice  ' .$part_num. ' NON AGGIORNATA';
+		session()->flash('message', $messaggio);
+		return redirect()->route('partlist');
+	}
+	
 	public function delete( $part_num ){
         
         //metodo 1
