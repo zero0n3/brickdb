@@ -4,7 +4,7 @@
 
   @section('content')
 
-    <h2>Edit Part</h2>
+    <h3 class="title is-3">Edit {{$part->part_num}}</h3>
 
     <form action="/partlist/{{$part->part_num}}" method="POST" enctype="multipart/form-data">
       {{csrf_field()}}
@@ -14,62 +14,82 @@
       <input type="hidden" name="_filename" value="{{basename(asset($part->path))}}">
 
       
-      <!-- codice PARTE -->  
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s6">
-              <input disabled name="part_num" type="text" class="validate" value="{{$part->part_num}}">
-              <label for="codice">Codice (non modificabile)</label>
+      <!-- codice PARTE -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <div class="field">
+            <label class="label">Codice</label>
+            <div class="control">
+              <input name="part_num" class="input is-danger" type="text" value="{{$part->part_num}}" readonly>
             </div>
+            <p class="help">Non modificabile</p>
           </div>
-      </div>
-
-      <!-- descrizione PARTE -->  
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s6">
-              <input name="name" type="text" class="validate" value="{{$part->name}}">
-              <label for="name">Nome</label>
-            </div>
-          </div>
+        </div>
       </div>
       
-      <!-- categoria PARTE -->  
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s6">
-              <input name="part_cat_id" type="text" class="validate" value="{{$part->part_cat_id}}">
-              <label for="part_cat_id">Categoria</label>
+      <!-- descrizione PARTE -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <div class="field">
+            <label class="label">Nome</label>
+            <div class="control">
+              <input name="name" class="input is-success" type="text" value="{{$part->name}}">
             </div>
           </div>
+        </div>
       </div>
+
+      <!-- categoria PARTE -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <div class="field">
+            <label class="label">Categoria</label>
+            <div class="control">
+              <input name="part_cat_id" class="input is-success" type="text" value="{{$part->part_cat_id}}">
+            </div>
+          </div>
+        </div>
+      </div>      
 
       <!-- FOTO DA DB -->
       @if($part->part_img_url)
-        <div class="row">
-            <div class="row">
-              <div class="input-field col s6">
-                <img src="{{asset($part->path)}}" alt="{{$part->part_num}}">
-              </div>
-            </div>
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <figure class="image is-128x128">
+            <img src="{{asset($part->path)}}" alt="{{$part->part_num}}">
+          </figure>
         </div>
+      </div> 
       @endif
 
       <!-- FOTO CARICATA SPOT DA INSERIRE NEL DB -->
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>New part image</span>
-          <input type="file" name="part_img">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <div class="file is-info is-small">
+            <label class="file-label">
+              <input class="file-input" type="file" name="part_img">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+            </label>
+          </div>
         </div>
       </div> 
 
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
-
+      <!-- SUBMIT -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">      
+          <div class="control">
+            <button class="button is-primary" type="submit" name="action">Submit</button>
+          </div>
+        </div>
+      </div>
+      
     </form>
 
 

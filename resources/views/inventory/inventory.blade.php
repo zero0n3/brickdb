@@ -4,7 +4,7 @@
 
   @section('content')
 
-    <h2>Inventory Lists</h2>
+    <h3 class="title is-3">Inventory list</h3>
 
 @if(session()->has('message'))
   @component('components.alert-info')
@@ -13,27 +13,39 @@
 @endif
 
     <form>
-    <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
+      <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
+  
+  
+      <table class="table is-striped is-hoverable is-narrow">
+        <thead>
+          <tr>
+              <th>Id</th>
+              <th>List name</th>
+              <th>Image</th>
+              <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach ($inventory_lists as $inventory_list)
+          <tr>
+            <td>{{$inventory_list->id}}</td>
+            <td>{{$inventory_list->list_name}}</td>
+            @if($inventory_list->inv_thumb)
+              <td><figure class="image is-48x48"><img src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}"></figure></td>
+            @else
+              <td></td>
+            @endif
+  
+            <td>
+                <a href="/inventory/{{$inventory_list->id}}/edit" class="button is-info">EDIT</a>     
+                <a href="/inventory/{{$inventory_list->id}}" class="button is-danger">DELETE</a>
+            </td>
+          </tr>
+  
+        @endforeach
+        </tbody>
+      </table>
 
-
-
-    <ul class="collection">
-      @foreach ($inventory_lists as $inventory_list)
-
-          <li class="collection-item">({{$inventory_list->id}}) {{$inventory_list->list_name}}
-
-            <div class="right-align"> 
-              @if($inventory_list->inv_thumb)
-                <img  class="circle responsive-img" width="50" src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}">
-              @endif
-              <a href="/inventory/{{$inventory_list->id}}/edit" class="btn waves-effect waves-light blue">EDIT</a>     
-              <a href="/inventory/{{$inventory_list->id}}" class="btn waves-effect waves-light red">DELETE</a>
-            </div>
-
-          </li>
-
-      @endforeach
-    </ul>
     </form>
   @endsection
 
@@ -46,7 +58,8 @@
     <script>
     $('document').ready(function(){
       $('#alert_box').fadeOut(3500);
-      $('ul').on('click', 'a[class="btn waves-effect waves-light red"]', function(ele) {
+      
+      $('td').on('click', 'a[class="button is-danger"]', function(ele) {
         ele.preventDefault();
 
         var urlInventory = $(this).attr('href');

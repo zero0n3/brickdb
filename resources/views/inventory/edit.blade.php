@@ -4,48 +4,63 @@
 
   @section('content')
 
-    <h2>Edit Inventory</h2>
+    <h3 class="title is-3">Edit Inventory</h3>
 
     <form action="/inventory/{{$inventory_list->id}}" method="POST" enctype="multipart/form-data">
       {{csrf_field()}}
       <input type="hidden" name="_method" value="PATCH">
       
       <!-- NOME ALBUM -->  
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s6">
-              <input name="list_name" type="text" class="validate" value="{{$inventory_list->list_name}}">
-              <label for="name">Name</label>
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <div class="field">
+            <label class="label">Nome</label>
+            <div class="control">
+              <input name="list_name" class="input is-success" type="text" value="{{$inventory_list->list_name}}">
             </div>
           </div>
-      </div>
-
-      <!-- FOTO CARICATA SPOT DA INSERIRE NEL DB -->
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>Thumbnail</span>
-          <input type="file" name="inv_thumb">
         </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
-      </div>    
+      </div>      
 
       <!-- FOTO DA DB -->
       @if($inventory_list->inv_thumb)
-        <div class="row">
-            <div class="row">
-              <div class="input-field col s6">
-                <img src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}">
-              </div>
-            </div>
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <figure class="image is-128x128">
+            <img src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}">
+          </figure>
         </div>
+      </div> 
       @endif
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
+
+      <!-- FOTO CARICATA SPOT DA INSERIRE NEL DB -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <div class="file is-info is-small">
+            <label class="file-label">
+              <input class="file-input" type="file" name="inv_thumb">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>       
+
+      <!-- SUBMIT -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">      
+          <div class="control">
+            <button class="button is-primary" type="submit" name="action">Submit</button>
+          </div>
+        </div>
+      </div>
 
     </form>
-
 
 @endsection

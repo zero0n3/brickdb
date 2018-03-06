@@ -145,6 +145,21 @@ class InventoryListsController extends Controller
 		//METODO 3 CON L'ISTANZA
 		$inventory = new Inventory_list();
 		$inventory->list_name = request()->input('list_name');
+		if($req->hasFile('inv_thumb')){
+			$file = $req->file('inv_thumb');
+			if($file->isValid()){
+				//qui gli indico io il file system per questo file oppure cambio il default da local a public e non c'è + bisogno di dichiararll
+				//$fileName = $file->store(env('IMG_THUMB_DIR'), 'public');
+				//
+				//$fileName = $file->store(env('IMG_THUMB_DIR'));
+				//
+				//oppure uso storeas e creo anche il nome file 
+				$fileName = 'new_inv.'.$file->extension();
+				$file->storeAs(env('INVE_THUMB_DIR'), $fileName);
+				$inventory->inv_thumb = env('INVE_THUMB_DIR').$fileName;	
+			}
+			
+		}		
 		$inventory->user_id = 2;
 		$resu = $inventory->save();
 

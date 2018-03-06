@@ -1,13 +1,8 @@
-<div class="row" id="alert_box">
-  <div class="col s12 m12">
-    <div class="card red darken-1">
-
-        
-          <div class="card-content white-text">
-            {{$slot}}
-          </div>
-        
-
-   </div>
+<div class="columns is-mobile">
+  <div class="column is-half">
+    <div class="notification is-danger" id="alert_box">
+      <button class="delete"></button>
+      {{$slot}}
+    </div>
   </div>
 </div>
