@@ -58,7 +58,7 @@
     <script>
     $('document').ready(function(){
       $('#alert_box').fadeOut(3500);
-      
+
       $('td').on('click', 'a[class="button is-danger"]', function(ele) {
         ele.preventDefault();
 
@@ -83,7 +83,6 @@
 
       });
     });
-
 
     </script>
 @endsection
