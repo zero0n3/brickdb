@@ -28,13 +28,14 @@ class InventoryListsController extends Controller
 	}
 
 
-	public function delete($id){	//	con cancellazione file img
+	public function delete(Inventory_list $inventory_list_id){	//	con cancellazione file img
+        // per non fare il find dell'id devo chiamare la variabile col nome indicato nella route
         
-        $inventory_list = Inventory_list::find($id);
+        //$inventory_list = Inventory_list::find($id);
         
-        $thumbNail = $inventory_list->inv_thumb;
+        $thumbNail = $inventory_list_id->inv_thumb;
         $disk = config('filesystems.default');
-        $resu = $inventory_list->delete();
+        $resu = $inventory_list_id->delete();
         
         //storage
         if($resu){
