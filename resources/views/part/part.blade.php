@@ -13,40 +13,40 @@
 @endif
 
     <form>
-    <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
-
-
-    <table class="table is-striped is-hoverable is-narrow">
-      <thead>
-        <tr>
-            <th>Part Num</th>
-            <th>Name</th>
-            <th>Cat.</th>
-            <th>Image</th>
-            <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach ($parts as $part)
-        <tr>
-          <td>{{$part->part_num}}</td>
-          <td>{{$part->name}}</td>
-          <td>{{$part->part_cat_id}}</td>
-          @if($part->part_img_url)
-            <td><img  class="image is-48x48" src="{{asset($part->path)}}" alt="{{$part->name}}"></td>
-          @else
-            <td></td>
-          @endif
-
-          <td>
-            <a href="/partlist/{{$part->part_num}}/edit" class="button is-info">EDIT</a>
-            <!--<a href="/partlist/{{$part->part_num}}" class="btn waves-effect waves-light red">DELETE</a>-->
-          </td>
-        </tr>
-
-      @endforeach
-      </tbody>
-    </table>
+      <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
+  
+  
+      <table class="table is-striped is-hoverable is-narrow">
+        <thead>
+          <tr>
+              <th>Part Num</th>
+              <th>Name</th>
+              <th>Cat.</th>
+              <th>Image</th>
+              <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach ($parts as $part)
+          <tr>
+            <td>{{$part->part_num}}</td>
+            <td>{{$part->name}}</td>
+            <td>{{$part->part_cat_id}}</td>
+            @if($part->part_img_url)
+              <td><figure class="image is-48x48"><img src="{{asset($part->path)}}" alt="{{$part->name}}"></figure></td>
+            @else
+              <td></td>
+            @endif
+  
+            <td>
+              <a href="/partlist/{{$part->part_num}}/edit" class="button is-info">EDIT</a>
+              <!--<a href="/partlist/{{$part->part_num}}" class="btn waves-effect waves-light red">DELETE</a>-->
+            </td>
+          </tr>
+  
+        @endforeach
+        </tbody>
+      </table>
 
 
     </form>

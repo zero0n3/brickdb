@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use App\Models\Inventory_list;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,14 +27,37 @@ class InventoryListsController extends Controller
 		return view('inventory.inventory', ['inventory_lists' => $inventory_lists]);
 	}
 
+
+	public function delete(Inventory_list $inventory_list_id){	//	con cancellazione file img
+        // per non fare il find dell'id devo chiamare la variabile col nome indicato nella route
+        
+        //$inventory_list = Inventory_list::find($id);
+        
+        $thumbNail = $inventory_list_id->inv_thumb;
+        $disk = config('filesystems.default');
+        $resu = $inventory_list_id->delete();
+        
+        //storage
+        if($resu){
+          if($thumbNail && Storage::disk($disk)->has($thumbNail)){
+            Storage::disk($disk)->delete($thumbNail);
+          }
+        }
+
+       	return '' . $resu;
+        //return redirect()->back();
+	}
+	
+	
+/*	// funzione delete senza cancellazione file
 	public function delete( $id ){
         
         //metodo 1
         //$resu = Inventory_list::where('id', $id)->delete();
         
         //METODO 2 CON FIND
-        $inventory = Inventory_list::find($id);
-        $resu = $inventory->delete();
+        $inventory_list = Inventory_list::find($id);
+        $resu = $inventory_list->delete();
 
         //$sql = 'DELETE from inventory_lists WHERE id = :id';
         //qui devo dare il return del db delete così da catturarlo in ajax 
@@ -42,7 +66,7 @@ class InventoryListsController extends Controller
        	return '' . $resu;
         //return redirect()->back();
 	}
-
+*/
 	
 	public function show($id){
 		
@@ -71,24 +95,11 @@ class InventoryListsController extends Controller
 		);*/
 
 		// METODO 2 CON FIND
-		$inventory = Inventory_list::find($id);
-		$inventory->list_name = request()->input('list_name');
-		if($req->hasFile('inv_thumb')){
-			$file = $req->file('inv_thumb');
-			if($file->isValid()){
-				//qui gli indico io il file system per questo file oppure cambio il default da local a public e non c'è + bisogno di dichiararll
-				//$fileName = $file->store(env('IMG_THUMB_DIR'), 'public');
-				//
-				//$fileName = $file->store(env('IMG_THUMB_DIR'));
-				//
-				//oppure uso storeas e creo anche il nome file 
-				$fileName = $id.'.'.$file->extension();
-				$file->storeAs(env('INVE_THUMB_DIR'), $fileName);
-				$inventory->inv_thumb = env('INVE_THUMB_DIR').$fileName;	
-			}
-			
-		}
-		$resu = $inventory->save();
+		$inventory_list = Inventory_list::find($id);
+		$inventory_list->list_name = request()->input('list_name');
+		//	refactor del codice sotto
+		$this->processFile($req, $id, $inventory_list);
+		$resu = $inventory_list->save();
 
 
 
@@ -115,8 +126,10 @@ class InventoryListsController extends Controller
 	}
 
 	public function create(){
-		
-		return view('inventory.createinventory');
+		//	creo una variabile vuota dell'inventory perchè usando il partial per il carico file
+		//	in fase di nuova creazione non ho alcun id lista quindi mi darebbe errore
+		$inventory_list = new Inventory_list();
+		return view('inventory.createinventory', ['inventory_list' => $inventory_list]);
 
 	}
 
@@ -143,10 +156,20 @@ class InventoryListsController extends Controller
 		);*/
 
 		//METODO 3 CON L'ISTANZA
-		$inventory = new Inventory_list();
-		$inventory->list_name = request()->input('list_name');
-		$inventory->user_id = 2;
-		$resu = $inventory->save();
+		$inventory_list = new Inventory_list();
+		$inventory_list->list_name = request()->input('list_name');
+		$inventory_list->inv_thumb = ''; //	questo devo metterlo vuoto qui perchè senno prendo errore in fase del primo save
+		$inventory_list->user_id = 2;
+		$resu = $inventory_list->save();
+		
+		//	prima salvo il nuovo record e POI salvo l'immagine usando l'id dell'inventory appena salvata
+		if($resu){
+			//	refactor del codice sotto e risalvo sul db anche l'immagine
+			if($this->processFile(request(), $inventory_list->id, $inventory_list)){
+				$inventory_list->save();	
+			}
+		}
+
 
 /*
 		$data = request()->only('list_name');
@@ -162,4 +185,35 @@ class InventoryListsController extends Controller
 		session()->flash('message', $messaggio);
 		return redirect()->route('inventory');
 	}
+	
+    /**
+     * @param Request $req
+     * @param mixed   $id
+     * @param mixed   $inventory_list
+     */
+    public function processFile(Request $req, $id, &$inventory_list)
+    {
+    	
+		if(!$req->hasFile('inv_thumb')){
+			return false;
+		}
+		
+		$file = $req->file('inv_thumb');
+	    
+	    if(!$file->isValid()){
+	      return false;
+	    }		
+		
+		//qui gli indico io il file system per questo file oppure cambio il default da local a public e non c'è + bisogno di dichiararll
+		//$fileName = $file->store(env('IMG_THUMB_DIR'), 'public');
+		//
+		//$fileName = $file->store(env('IMG_THUMB_DIR'));
+		//
+		//oppure uso storeas e creo anche il nome file 
+		$fileName = $id.'.'.$file->extension();
+		$file->storeAs(env('INVE_THUMB_DIR'), $fileName);
+		$inventory_list->inv_thumb = env('INVE_THUMB_DIR').$fileName;	
+		return true;
+    }
+
 }

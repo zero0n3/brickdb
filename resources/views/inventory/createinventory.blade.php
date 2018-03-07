@@ -1,27 +1,36 @@
 @extends('templates.default')
 
-@section('title', 'Create Inventory')
+@section('title', 'Insert New Inventory')
 
   @section('content')
 
-    <h2>CREATE NEW Inventory</h2>
+    <h3 class="title is-3">Insert New Inventory</h3>
 
-    <form action="{{route('inventory.save')}}" method="POST">
+    <form action="{{route('inventory.save')}}" method="POST" enctype="multipart/form-data">
       {{csrf_field()}}
-        
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s6">
-              <input name="list_name" type="text" class="validate" value="">
-              <label for="name">Name</label>
+  
+      <!-- NOME INVENTORY -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">
+          <div class="field">
+            <label class="label">Nome</label>
+            <div class="control">
+              <input name="list_name" class="input is-success" type="text" value="" placeholder="Insert list name">
             </div>
           </div>
+        </div>
+      </div> 
 
+      @include('inventory.partials.fileupload')     
+
+      <!-- SUBMIT -->
+      <div class="columns is-mobile">
+        <div class="column is-two-fifths">      
+          <div class="control">
+            <button class="button is-primary" type="submit" name="action">Submit</button>
+          </div>
+        </div>
       </div>
-
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
 
     </form>
 

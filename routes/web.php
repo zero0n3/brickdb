@@ -34,7 +34,7 @@ Route::get('/inventory', 'InventoryListsController@index')->name('inventory');
 Route::get('/inventory/{inventory_list_id}/edit', 'InventoryListsController@edit');
 Route::get('/inventory/{inventory_list_id}', 'InventoryListsController@show')->where('inventory_list_id', '[0-9]+');
 Route::get('/inventory/create', 'InventoryListsController@create')->name('create.inventory');
-Route::delete('/inventory/{inventory_list_id}','InventoryListsController@delete');
+Route::delete('/inventory/{inventory_list_id}','InventoryListsController@delete')->name('delete.inventory');
 Route::patch('/inventory/{inventory_list_id}', 'InventoryListsController@store');
 Route::post('/inventory', 'InventoryListsController@save')->name('inventory.save');
 
