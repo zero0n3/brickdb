@@ -200,8 +200,8 @@ class InventoryListsController extends Controller
 
     public function getParts(Inventory_list $inventory_list_id) {
 
-    	$parts = Part::where('id', $inventory_list_id->id)->get();
-    	return $parts;
+    	//$parts = Part::where('id', $inventory_list_id->id)->get();
+    	//return $parts;
     }
 
 }
