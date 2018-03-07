@@ -1,10 +1,10 @@
 @extends('templates.default')
 
-@section('title', 'Inventory Lists')
+@section('title', 'Parts inside inventory')
 
   @section('content')
 
-    <h3 class="title is-3">Inventory list</h3>
+    <h3 class="title is-3">Parts for inventory named {{$inventory_list_id->list_name}}</h3>
 
 @if(session()->has('message'))
   @component('components.alert-info')
@@ -19,35 +19,21 @@
       <table class="table is-striped is-hoverable is-narrow">
         <thead>
           <tr>
-              <th>Id</th>
-              <th>List name</th>
-              <th>Cover</th>
-              <th>Parts</th>
-              <th>Actions</th>
+              <th>id</th>
+              <th>part num</th>
+              <th>color id</th>
+              <th>quantity</th>
+              <th>inventory</th>
           </tr>
         </thead>
         <tbody>
-        @foreach ($inventory_lists as $inventory_list)
+        @foreach ($parts_x_inv as $part_x_inv)
           <tr>
-            <td>{{$inventory_list->id}}</td>
-            <td>{{$inventory_list->list_name}}</td>
-            @if($inventory_list->inv_thumb)
-              <td><figure class="image is-48x48"><img src="{{asset($inventory_list->path)}}" alt="{{$inventory_list->list_name}}"></figure></td>
-            @else
-              <td></td>
-            @endif
-            <td>
-            @if($inventory_list->invxuser_count)
-              <a href="/inventory/{{$inventory_list->id}}/parts" class="button is-primary">Parts ({{$inventory_list->invxuser_count}})</a>
-            @else
-              <a href="#" class="button is-white">No Parts</a>
-            @endif
-            </td>
-
-            <td>
-                <a href="/inventory/{{$inventory_list->id}}/edit" class="button is-info">EDIT</a>     
-                <a href="/inventory/{{$inventory_list->id}}" class="button is-danger">DELETE</a>
-            </td>
+            <td>{{$part_x_inv->id}}</td>
+            <td>{{$part_x_inv->part_id}}</td>
+            <td>{{$part_x_inv->color_id}}</td>
+            <td>{{$part_x_inv->quantity}}</td>
+            <td>{{$part_x_inv->inventory_list_id}}</td>
           </tr>
   
         @endforeach

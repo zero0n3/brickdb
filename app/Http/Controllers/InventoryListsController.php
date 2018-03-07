@@ -17,7 +17,7 @@ class InventoryListsController extends Controller
 		//$queryBuilder = DB::table('inventory_lists')->orderBy('id', 'desc');
 		//
 		// usando la classe il primo metodo DEVE ESSERE STATICO quindi usando i 2punti ::
-		$queryBuilder = Inventory_list::orderBy('id', 'desc');
+		$queryBuilder = Inventory_list::orderBy('id', 'desc')->withCount('invxuser');
 		if ($req->has('id')){
 
 			$queryBuilder->where('id','=',$req->input('id'));
@@ -201,8 +201,8 @@ class InventoryListsController extends Controller
 
     public function getParts(Inventory_list $inventory_list_id) {
 
-    	$parts = Inventory_x_user::where('id', $inventory_list_id->id)->get();
-    	return $parts;
+    	$parts_x_inv = Inventory_x_user::where('inventory_list_id', $inventory_list_id->id)->get();
+    	return view('invxuser.invxuser', compact('inventory_list_id','parts_x_inv'));
     }
 
 }
