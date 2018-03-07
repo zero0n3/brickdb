@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Http\Controllers;
 
 use Storage;
 use App\Models\Inventory_list;
+use App\Models\Part;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -195,6 +196,12 @@ class InventoryListsController extends Controller
 		$file->storeAs(env('INVE_THUMB_DIR'), $fileName);
 		$inventory_list->inv_thumb = env('INVE_THUMB_DIR').$fileName;	
 		return true;
+    }
+
+    public function getParts(Inventory_list $inventory_list_id) {
+
+    	$parts = Part::where('id', $inventory_list_id->id)->get();
+    	return $parts;
     }
 
 }
