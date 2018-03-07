@@ -49,25 +49,6 @@ class InventoryListsController extends Controller
 	}
 	
 	
-/*	// funzione delete senza cancellazione file
-	public function delete( $id ){
-        
-        //metodo 1
-        //$resu = Inventory_list::where('id', $id)->delete();
-        
-        //METODO 2 CON FIND
-        $inventory_list = Inventory_list::find($id);
-        $resu = $inventory_list->delete();
-
-        //$sql = 'DELETE from inventory_lists WHERE id = :id';
-        //qui devo dare il return del db delete così da catturarlo in ajax 
-        //e testarlo per eliminare la riga
-        //return DB::delete($sql, ['id' => $id]);
-       	return '' . $resu;
-        //return redirect()->back();
-	}
-*/
-	
 	public function show($id){
 		
 		$resu = Inventory_list::where('id','=', $id)->orderBy('id','desc')->get();
