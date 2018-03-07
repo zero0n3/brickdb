@@ -1,10 +1,11 @@
 <?php
 
-namespace Http\Controllers;
+namespace App\Http\Controllers;
 
 use Storage;
 use App\Models\Inventory_list;
 use App\Models\Part;
+use App\Models\Inventory_x_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -200,8 +201,8 @@ class InventoryListsController extends Controller
 
     public function getParts(Inventory_list $inventory_list_id) {
 
-    	//$parts = Part::where('id', $inventory_list_id->id)->get();
-    	//return $parts;
+    	$parts = Inventory_x_user::where('id', $inventory_list_id->id)->get();
+    	return $parts;
     }
 
 }
