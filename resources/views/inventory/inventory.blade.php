@@ -37,6 +37,7 @@
             @endif
   
             <td>
+                <a href="/inventory/{{$inventory_list->id}}/parts" class="button is-primary">Parts</a>
                 <a href="/inventory/{{$inventory_list->id}}/edit" class="button is-info">EDIT</a>     
                 <a href="/inventory/{{$inventory_list->id}}" class="button is-danger">DELETE</a>
             </td>
