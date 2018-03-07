@@ -37,7 +37,7 @@ Route::get('/inventory/create', 'InventoryListsController@create')->name('create
 Route::delete('/inventory/{inventory_list_id}','InventoryListsController@delete')->where('inventory_list_id', '[0-9]+');
 Route::patch('/inventory/{inventory_list_id}', 'InventoryListsController@store');
 Route::post('/inventory', 'InventoryListsController@save')->name('inventory.save');
-Route::get('/inventory/{inventory_list_id}/parts', 'InventoryListsController@getParts')->name('inventory.parts');
+Route::get('/inventory/{inventory_list_id}/parts', 'InventoryListsController@getParts')->name('inventory.getparts')->where('inventory_list_id', '[0-9]+');
 
 Route::get('usernoinventory', function(){
 	$usernoinventory = DB::table('users as u')Cache::pull('key');
@@ -45,7 +45,7 @@ Route::get('usernoinventory', function(){
 							->select('u.id', 'email', 'name', 'i.list_name')
 							->whereNull('i.list_name')
 							->get();
-	return $usernoinventory;
+	return $usernoinventory;Cache::pull('key');
 	
 });
 
