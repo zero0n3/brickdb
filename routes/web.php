@@ -40,7 +40,7 @@ Route::post('/inventory', 'InventoryListsController@save')->name('inventory.save
 Route::get('/inventory/{inventory_list_id}/parts', 'InventoryListsController@getParts')->name('inventory.getparts')->where('inventory_list_id', '[0-9]+');
 
 Route::get('usernoinventory', function(){
-	$usernoinventory = DB::table('users as u')Cache::pull('key');
+	$usernoinventory = DB::table('users as u')
 							->leftJoin('inventory_lists as i', 'u.id', 'i.user_id')
 							->select('u.id', 'email', 'name', 'i.list_name')
 							->whereNull('i.list_name')
