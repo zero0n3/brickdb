@@ -4,7 +4,7 @@
 
   @section('content')
 
-    <h3 class="title is-3">Parts for inventory named {{$inventory_list_id->list_name}}</h3>
+    <h3 class="title is-3">Parts for inventory named "{{$inventory_list_id->list_name}}"</h3>
 
 @if(session()->has('message'))
   @component('components.alert-info')
@@ -24,6 +24,7 @@
               <th>color id</th>
               <th>quantity</th>
               <th>inventory</th>
+              <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,9 @@
             <td>{{$part_x_inv->color_id}}</td>
             <td>{{$part_x_inv->quantity}}</td>
             <td>{{$part_x_inv->inventory_list_id}}</td>
+            <td>
+              <a href="/invxuser/{{$part_x_inv->id}}" class="button is-danger">DELETE</a>
+            </td>
           </tr>
   
         @endforeach

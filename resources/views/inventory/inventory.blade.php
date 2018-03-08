@@ -40,7 +40,7 @@
             @if($inventory_list->invxuser_count)
               <a href="/inventory/{{$inventory_list->id}}/parts" class="button is-primary">Parts ({{$inventory_list->invxuser_count}})</a>
             @else
-              <a href="#" class="button is-white">No Parts</a>
+              No Parts
             @endif
             </td>
 

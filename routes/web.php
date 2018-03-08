@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 //home
 Route::get('/','HomeController@index');
 
-//part list per recupero foto ed edit parti
+//part list GLOBALE per recupero foto ed edit parti
 Route::get('/partlist','PartListController@home')->name('partlist');
 Route::get('/partlist/{part_num}/edit', 'PartListController@edit');
 Route::patch('/partlist/{part_num}', 'PartListController@store');
@@ -48,6 +48,13 @@ Route::get('usernoinventory', function(){
 	return $usernoinventory;Cache::pull('key');
 	
 });
+
+
+//	parti dentro ad una INVENTORY X USER
+//	uso la chiamata al controller creato con --resource perchè è particolare
+Route::resource('invxuser', 'Inventory_x_userController');
+//Route::get('/invxuser/{invxuser}', 'Inventory_x_userController@destroy');
+
 
 Route::get('/welcome/{name?}/{lastname?}', 'WelcomeController@welcome')
 
