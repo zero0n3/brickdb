@@ -28,3 +28,4 @@ gulpfile.js
 /resources/views/errors/503.blade.php
 /resources/views/vendor/.gitkeep
 /tests/ExampleTest.php
+composer.lock
